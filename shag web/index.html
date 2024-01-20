@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Navigation Bar with Logo</title>
+    <style>
+        body{
+            background-image: url(Rumi_Darwaza_Trails.jpg);
+           
+            background-size: cover;
+        }
+        nav {
+            
+            overflow: hidden;
+        }
+        nav a {
+            float: right;
+            display: block;
+            color: white;
+            text-align: center;
+            padding: 14px 16px;
+            text-decoration: none;
+            font-size: 30px;
+            font-weight: bold;
+        }
+        nav a:hover {
+            background-color: pink;
+        }
+        .logo {
+            float: left;
+        } 
+.row
+{
+    display: flex;
+    height: 50%;
+    align-items: center;
+}
+.time{
+    margin-top: 10%;
+    margin-left: 85%;
+    border-radius: 15px;
+    width: 50px;
+    
+}
+.time p{
+    font-size: 35px;
+    color: hotpink;
+}
+.col
+{
+    flex-basis: 50%;
+    margin-top: -20%;
+}
+h1{
+    margin-left: 30px;
+    font-size: 60px;
+    color: white;
+}
+.lko
+{
+    text-decoration: none;
+    color:rgb(249, 54, 151); 
+    font-weight: bold;
+    margin-top: 80px;
+    margin-bottom: -30px;
+    font-size: 90px;
+}
+p{
+    margin-left: 30px;
+    font-style: italic;
+    font-size: 25px;
+    color: white;
+}
+button
+{
+    margin: 30px;
+    width: 140px;
+    height: 25px;
+    margin-top: 10px;
+    color: black;
+    font-size: 18px;
+    border-radius: 20px;
+    cursor: pointer;
+    background-color:blanchedalmond;
+}
+.h{
+    margin-bottom: -90px;
+    margin-top: 100px;
+}
+.d{
+    backdrop-filter: blur(10px);
+}
+#weather-container {
+    max-width: 400px;
+    padding: 20px;
+    border-radius: 15px;
+    text-align: center;
+    margin-left: 80%;
+    height: 20%;
+    display: block;
+}
+
+h2, label, p {
+    color: #fff;
+    margin: 8px 0;
+}
+
+
+button {
+    background: hotpink;
+    color: white;
+    
+    padding: 10px;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    margin-top: 10px;
+    width: 200px;
+    font-size: 16px;
+}
+
+
+button:hover {
+    background: pink;
+}
+.sha{
+    margin-top: -30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+#temp-div p {
+    font-size: 30px;
+    
+}
+
+#weather-info {
+    font-size: 30px;
+    display: flex;
+    justify-content: center;
+    margin-left: -50%;
+}
+
+#hourly-forecast {
+    margin-top: 20px;
+    white-space: nowrap;
+    display: flex;
+    justify-content: space-between;
+}
+
+.hourly-item {
+    flex: 0 0 auto;
+    width: 80px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-right: 10px;
+    color: white;
+}
+
+.hourly-item img {
+    width: 30px;
+    height: 30px;
+    margin-bottom: 5px;
+}
+
+#hourly-heading {
+    color: #fff;
+    margin-top: 10px;
+}
+</style>
+</head>
+<body onload="updateLucknowTime()">
+    <nav>
+        <div class="logo">
+        <a href="index.html"><img src="logo.png" alt="Logo" width="50" height="50"></a>
+        </div>
+        <a href="index.html">Home</a>
+        <a href="about.html">About</a>
+        <a href="contactus.html">Contact</a>
+    </nav>
+    <div class="time">
+       
+        <p id="lucknow-time"></p>
+    </div>
+    <div class="wea">
+        <div id="weather-container">
+            <button onclick="getWeather()">CHECK WEATHER</button>
+            <div class="sha">
+                <div id="temp-div"></div>
+                <div id="weather-info"></div>
+            </div>
+            <div id="hourly-forecast"></div>
+        </div>
+    </div>
+    <div class="row">
+        
+        <div class="col">
+            <h1 class="h">"मुस्कुराइए,  आप </h1><p class="lko">लखनऊ</p><h1> में हैं"</h1>
+            <div class="d">
+            <p >Lucknow, the capital city of the northern Indian state of Uttar Pradesh, is a fascinating blend of rich history, cultural opulence, and modern vibrancy. Steeped in a tapestry of Mughal and British influences, Lucknow stands as a testament to the grandeur of its past.
+            </p>
+        </div>
+            <div class="ch">
+            <button><a href="place.html">PLACES</a></button>
+            <button><a href="cuisines.html">CUISINES</a></button>
+            <button><a href="heri.html">HERITAGE</a></button>
+        </div>
+        </div>
+    </div>
+    <script>
+        function updateLucknowTime() {
+          var lucknowOffset = 5.5; 
+    
+          var now = new Date();
+          var utc = now.getTime() + now.getTimezoneOffset() * 60000;
+          var lucknowTime = new Date(utc + (3600000 * lucknowOffset));
+    
+          var hours = lucknowTime.getHours();
+          var minutes = lucknowTime.getMinutes();
+          var seconds = lucknowTime.getSeconds();
+          
+          hours = hours < 10 ? "0" + hours : hours;
+          minutes = minutes < 10 ? "0" + minutes : minutes;
+          seconds = seconds < 10 ? "0" + seconds : seconds;
+    
+          var timeString = hours + ":" + minutes + ":" + seconds;
+          document.getElementById("lucknow-time").innerHTML = timeString;
+    
+          setTimeout(updateLucknowTime, 1000);
+        }
+        function getWeather() {
+    const apiKey = '298671c7fecfb8a484b4add58aa02213';
+    const city = 'lucknow';
+
+    const currentWeatherUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}`;
+    const forecastUrl = `https://api.openweathermap.org/data/2.5/forecast?q=${city}&appid=${apiKey}`;
+
+    fetch(currentWeatherUrl)
+        .then(response => response.json())
+        .then(data => {
+            displayWeather(data);
+        })
+        
+
+    fetch(forecastUrl)
+        .then(response => response.json())
+        .then(data => {
+            displayHourlyForecast(data.list);
+        })
+        
+}
+
+function displayWeather(data) {
+    const tempDivInfo = document.getElementById('temp-div');
+    const weatherInfoDiv = document.getElementById('weather-info');
+    const hourlyForecastDiv = document.getElementById('hourly-forecast');
+
+    // Clear previous content
+    weatherInfoDiv.innerHTML = '';
+    hourlyForecastDiv.innerHTML = '';
+    tempDivInfo.innerHTML = '';
+
+    if (data.cod === '404') {
+        weatherInfoDiv.innerHTML = `<p>${data.message}</p>`;
+    } else {
+        const cityName = data.name;
+        const temperature = Math.round(data.main.temp - 273.15); // Convert to Celsius
+        const description = data.weather[0].description;
+        const iconCode = data.weather[0].icon;
+
+        const temperatureHTML = `
+            <p>${temperature}°C </p>
+        `;
+
+        const weatherHtml = `
+            
+            <p>${description}</p>
+        `;
+
+        tempDivInfo.innerHTML = temperatureHTML;
+        weatherInfoDiv.innerHTML = weatherHtml;
+        weatherIcon.src = iconUrl;
+        weatherIcon.alt = description;
+
+        showImage();
+    }
+}
+
+
+
+function showImage() {
+    const weatherIcon = document.getElementById('weather-icon');
+    weatherIcon.style.display = 'block'; // Make the image visible once it's loaded
+}
+      </script>
+</body>
+</html>
